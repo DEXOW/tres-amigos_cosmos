@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'dart:math';
 
-class StartupScreen extends StatelessWidget {
-  const StartupScreen({super.key});
+class GetStartedScreen extends StatefulWidget {
+  const GetStartedScreen({super.key});
 
   @override
+  State<GetStartedScreen> createState() => _GetStartedScreenState();
+}
+class _GetStartedScreenState extends State<GetStartedScreen> {
+
+  final Random random = Random();
+  @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -19,8 +27,8 @@ class StartupScreen extends StatelessWidget {
                   alignment: AlignmentDirectional.center,
                   children: List<Widget>.generate(18, (value) => 
                     Positioned(
-                      left: 50,
-                      top: 50,
+                      top: random.nextDouble() * screenHeight,
+                      left: random.nextDouble() * screenWidth,
                       child: Container(
                         width: 2,
                         height: 2,
@@ -31,18 +39,6 @@ class StartupScreen extends StatelessWidget {
                       ),
                     )
                   ),
-                    // Positioned(
-                    //   left: 50,
-                    //   top: 50,
-                    //   child: Container(
-                    //     width: 2,
-                    //     height: 2,
-                    //     decoration: BoxDecoration(
-                    //       color: Colors.white,
-                    //       borderRadius: BorderRadius.circular(10),
-                    //     ),
-                    //   ),
-                    // )
                 )
               ),
             ],

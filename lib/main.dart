@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       ),
       home: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: kPrimaryColor),
-        child: const StartupScreen(),
+        child: GetStartedScreen(),
       ),
     );
   }
