@@ -10,10 +10,17 @@ class GetStartedScreen extends StatefulWidget {
 
 class _GetStartedScreenState extends State<GetStartedScreen> {
   bool isMoving = false;
+  double containerYPosition = 0.0;
 
   void _startAnimation() {
     setState(() {
       isMoving = true;
+    });
+  }
+
+  void _animateContainer() {
+    setState(() {
+      containerYPosition = 500.0; // Set the Y position you want to animate to
     });
   }
 
@@ -32,7 +39,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
             AnimatedStarBackground(
                 screenHeight: screenHeight, screenWidth: screenWidth),
             AnimatedContainer(
-              duration: Duration(seconds: 1),
+              duration: Duration(seconds: 2),
               curve: Curves.easeInOut,
               transform: isMoving
                   ? Matrix4.translationValues(
@@ -49,7 +56,11 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
               mainAxisAlignment: MainAxisAlignment.end, // Vertical alignment
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
+                AnimatedContainer(
+                  duration: Duration(seconds: 2),
+                  curve: Curves.easeInOut,
+                  transform:
+                      Matrix4.translationValues(0, containerYPosition, 0),
                   alignment: AlignmentDirectional.center,
                   width: 316,
                   height: 220,
@@ -78,6 +89,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                     SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
+                        _animateContainer();
                         _startAnimation();
                       },
                       style: ElevatedButton.styleFrom(
