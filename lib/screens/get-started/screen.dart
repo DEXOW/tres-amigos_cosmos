@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
+
+import 'package:cosmos/screens/components/animated_star_background.dart';
 
 class GetStartedScreen extends StatefulWidget {
   const GetStartedScreen({super.key});
@@ -9,7 +10,6 @@ class GetStartedScreen extends StatefulWidget {
 }
 
 class _GetStartedScreenState extends State<GetStartedScreen> {
-  final Random random = Random();
   bool isMoving = false;
   bool isImageVisible = true;
 
@@ -46,6 +46,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
+   
     double imageWidth = 129;
     double imageHeight = 98;
 
