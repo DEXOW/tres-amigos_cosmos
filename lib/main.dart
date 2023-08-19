@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:cosmos/screens/get-started/screen.dart';
+import 'package:cosmos/screens/splash/screen.dart';
 import 'package:cosmos/constants.dart';
 
 void main() {
