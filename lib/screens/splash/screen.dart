@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-
 import 'package:cosmos/screens/components/animated_star_background.dart';
 
-class GetStartedScreen extends StatefulWidget {
-  const GetStartedScreen({super.key});
+class Splash extends StatefulWidget {
+  const Splash({super.key});
 
   @override
-  State<GetStartedScreen> createState() => _GetStartedScreenState();
+  State<Splash> createState() => _SplashState();
 }
 
-class _GetStartedScreenState extends State<GetStartedScreen> {
+class _SplashState extends State<Splash> {
   bool isMoving = false;
 
   @override
@@ -26,7 +25,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-   
+
     double imageWidth = 129;
     double imageHeight = 98;
 
@@ -36,7 +35,8 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
         child: Stack(
           alignment: AlignmentDirectional.center,
           children: [
-            AnimatedStarBackground(screenHeight: screenHeight, screenWidth: screenWidth),
+            AnimatedStarBackground(
+                screenHeight: screenHeight, screenWidth: screenWidth),
             Positioned(
               top: screenHeight * 0.5 - imageHeight * 0.5,
               left: screenWidth * 0.5 - imageWidth * 0.5,
