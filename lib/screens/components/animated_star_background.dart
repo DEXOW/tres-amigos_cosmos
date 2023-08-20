@@ -1,5 +1,22 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:cosmos/providers/meta_data_provider.dart';
+
+class Star {
+  double x;
+  double y;
+  double size;
+  double opacity;
+
+  Star({
+    required this.x, 
+    required this.y, 
+    required this.size, 
+    required this.opacity
+  });
+}
 
 class AnimatedStarBackground extends StatefulWidget {
   final screenHeight;
@@ -10,53 +27,41 @@ class AnimatedStarBackground extends StatefulWidget {
   State<AnimatedStarBackground> createState() => _AnimatedStarBackgroundState();
 }
 
-class _AnimatedStarBackgroundState extends State<AnimatedStarBackground> with SingleTickerProviderStateMixin {
+class _AnimatedStarBackgroundState extends State<AnimatedStarBackground> {
 
+  late MetaDataProvider metaDataProvider;
   final Random random = Random();
-  late List<dynamic> stars;
+  late List<Star> stars;
 
   @override
   void initState() {
     super.initState();
-
-    setState(() {
-      stars = List.generate(30, (index) => {
-        'x': random.nextDouble() * widget.screenWidth,
-        'y': random.nextDouble() * widget.screenHeight,
-        'size': random.nextDouble() * 5 + 1,
-        'opacity': random.nextDouble(),
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
+    metaDataProvider = Provider.of<MetaDataProvider>(context, listen: false);
+    stars = metaDataProvider.stars;
   }
 
   @override
   Widget build(BuildContext context) {
-    
     Future.delayed(const Duration(milliseconds: 1000), () {
       setState(() {
-        stars[random.nextInt(30)]['size'] = random.nextDouble() * 3 + 1;
+        stars[random.nextInt(30)].size = random.nextDouble() * 3 + 1;
       });
     });
 
     return Stack(
       children: 
         stars.map((star) => Positioned(
-          left: star['x'],
-          top: star['y'],
+          left: star.x,
+          top: star.y,
           child: Opacity(
-            opacity: star['opacity'],
-            child: Star(star['size']),
+            opacity: star.opacity,
+            child: StarWidget(star.size),
           ),
         )).toList(),
     );
   }
 
-  Widget Star(double size){
+  Widget StarWidget(double size){
     return Container(
       width: size,
       height: size,

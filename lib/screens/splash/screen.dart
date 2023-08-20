@@ -1,14 +1,15 @@
+import 'package:cosmos/screens/register/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cosmos/screens/components/animated_star_background.dart';
 
-class Splash extends StatefulWidget {
-  const Splash({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<Splash> createState() => _SplashState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashState extends State<Splash> {
+class _SplashScreenState extends State<SplashScreen> {
   bool isMoving = false;
 
   @override
@@ -18,7 +19,7 @@ class _SplashState extends State<Splash> {
       setState(() {
         isMoving = true;
       });
-    });
+    }).then((value) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => RegisterScreen())));
   }
 
   @override
@@ -41,7 +42,7 @@ class _SplashState extends State<Splash> {
               top: screenHeight * 0.5 - imageHeight * 0.5,
               left: screenWidth * 0.5 - imageWidth * 0.5,
               child: AnimatedContainer(
-                duration: Duration(seconds: 1),
+                duration: const Duration(seconds: 1),
                 curve: Curves.easeInOut,
                 transform: isMoving
                     ? Matrix4.translationValues(
