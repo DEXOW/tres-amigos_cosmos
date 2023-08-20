@@ -13,13 +13,13 @@ git clone [https://github.com/DEXOW/cosmos.git](https://github.com/DEXOW/cosmos.
 
 3. Run the following command to install the required dependencies:
 
-flutter pub get
+# flutter pub get
 
 4. Connect your Android or iOS device to your computer.
 
 5. Run the app using the following command:
 
-flutter run
+# flutter run
 
 ## Configuration
 
