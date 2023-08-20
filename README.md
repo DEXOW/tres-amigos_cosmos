@@ -7,6 +7,7 @@ To run this app on your local machine, follow these steps:
 
 1. Clone the repository to your local machine:
 
+
 git clone [https://github.com/DEXOW/tres-amigos_cosmos.git](https://github.com/DEXOW/tres-amigos_cosmos.git)
 
 2. Open the project in Visual Studio Code.

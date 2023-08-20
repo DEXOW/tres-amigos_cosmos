@@ -1,7 +1,8 @@
-import 'package:cosmos/screens/register/screen.dart';
 import 'package:flutter/material.dart';
 
+import 'package:cosmos/screens/register/screen.dart';
 import 'package:cosmos/screens/components/animated_star_background.dart';
+import 'package:cosmos/screens/home/screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -19,6 +20,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void dispose() {
     super.dispose();
+  }
+
+  void login() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
   }
 
   @override
@@ -134,7 +139,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         const SizedBox(height: 40),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            login();
+                          },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF5C6166)),
                             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
