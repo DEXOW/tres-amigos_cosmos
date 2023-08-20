@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import 'package:cosmos/screens/home/home_screen.dart';
 import 'package:cosmos/screens/get_started/screen.dart';
 import 'package:cosmos/constants.dart';
 import 'package:cosmos/screens/splash/screen.dart';
@@ -20,7 +21,6 @@ void main() {
     )
   );
 }
-
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
