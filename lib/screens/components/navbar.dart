@@ -1,4 +1,5 @@
 import 'package:cosmos/screens/home/screen.dart';
+import 'package:cosmos/screens/profile/screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cosmos/screens/search/screen.dart';
@@ -38,18 +39,13 @@ class _NavBarState extends State<NavBar> {
           );
         }, isSelected: isSelected[1]),
         buildIcon(iconPathSVG: "assets/icons/booking.svg", onPressed: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const SearchScreen(),
-            ),
-          );
+          // Navigate to bookings screen
         }, isSelected: isSelected[2]),
         buildIcon(iconPathSVG: "assets/icons/profile.svg", onPressed: () {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const SearchScreen(),
+              builder: (context) => ProfileScreen(),
             ),
           );
         }, isSelected: isSelected[3]),
