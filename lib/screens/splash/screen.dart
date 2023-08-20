@@ -1,15 +1,15 @@
+import 'package:cosmos/screens/register/screen.dart';
 import 'package:flutter/material.dart';
-
 import 'package:cosmos/screens/components/animated_star_background.dart';
 
-class GetStartedScreen extends StatefulWidget {
-  const GetStartedScreen({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<GetStartedScreen> createState() => _GetStartedScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _GetStartedScreenState extends State<GetStartedScreen> {
+class _SplashScreenState extends State<SplashScreen> {
   bool isMoving = false;
 
   @override
@@ -19,14 +19,14 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
       setState(() {
         isMoving = true;
       });
-    });
+    }).then((value) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => RegisterScreen())));
   }
 
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-   
+
     double imageWidth = 129;
     double imageHeight = 98;
 
@@ -36,12 +36,13 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
         child: Stack(
           alignment: AlignmentDirectional.center,
           children: [
-            AnimatedStarBackground(screenHeight: screenHeight, screenWidth: screenWidth),
+            AnimatedStarBackground(
+                screenHeight: screenHeight, screenWidth: screenWidth),
             Positioned(
               top: screenHeight * 0.5 - imageHeight * 0.5,
               left: screenWidth * 0.5 - imageWidth * 0.5,
               child: AnimatedContainer(
-                duration: Duration(seconds: 1),
+                duration: const Duration(seconds: 1),
                 curve: Curves.easeInOut,
                 transform: isMoving
                     ? Matrix4.translationValues(

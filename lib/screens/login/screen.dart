@@ -1,16 +1,16 @@
-import 'package:cosmos/screens/login/screen.dart';
+import 'package:cosmos/screens/register/screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cosmos/screens/components/animated_star_background.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
@@ -47,7 +47,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       children: [
                         const SizedBox(height: 20),
                         const Text(
-                          'Welcome',
+                          'Welcome Back',
                           style: TextStyle(
                             fontSize: 32.5,
                             fontWeight: FontWeight.bold,
@@ -65,40 +65,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children:[
-                            const Text(
-                              'Email',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: 'Poppins',
-                                color: Color(0xFF9C9C9C),
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            TextFormField(
-                              decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                                filled: true,
-                                fillColor: Color(0xFF252D33),
-                                hintText: 'Email',
-                                hintStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 13,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                                  borderSide: BorderSide(
-                                    color: Color.fromRGBO(255, 255, 255, 0.5),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children:[
@@ -166,40 +132,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 10),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children:[
-                            const Text(
-                              'Confirm Password',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: 'Poppins',
-                                color: Color(0xFF9C9C9C),
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            TextFormField(
-                              decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                                filled: true,
-                                fillColor: Color(0xFF252D33),
-                                hintText: 'Confirm Password',
-                                hintStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 13,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                                  borderSide: BorderSide(
-                                    color: Color.fromRGBO(255, 255, 255, 0.5),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
                         const SizedBox(height: 40),
                         TextButton(
                           onPressed: () {},
@@ -214,7 +146,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(vertical: 15, horizontal: 60)),
                           ),
                           child: const Text(
-                            'Register',
+                            'Login',
                             style: TextStyle(
                               fontSize: 15,
                               fontFamily: 'Poppins',
@@ -225,13 +157,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         // const SizedBox(height: 0),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => RegisterScreen()));
                           },
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Already have an account? ',
+                                'Don’t have an account ? ',
                                 style: TextStyle(
                                   fontSize: 11,
                                   fontFamily: 'Poppins',
@@ -239,7 +171,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               ),
                               Text(
-                                'Log in',
+                                'Register',
                                 style: TextStyle(
                                   fontSize: 11,
                                   fontFamily: 'Poppins',
