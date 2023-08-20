@@ -10,6 +10,7 @@ import 'package:cosmos/screens/home/home_screen.dart';
 import 'package:cosmos/screens/get_started/screen.dart';
 import 'package:cosmos/screens/search/search.dart';
 import 'package:cosmos/constants.dart';
+import 'package:cosmos/screens/travel/screen.dart';
 import 'package:cosmos/screens/splash/screen.dart';
 import 'package:cosmos/providers/meta_data_provider.dart';
 
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
       home: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light
             .copyWith(systemNavigationBarColor: kPrimaryColor),
-        child: ProfileScreen(),
+        child: TravelScreen(),
       ),
     );
   }

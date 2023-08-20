@@ -29,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(height: 10),
               Text(
                 'AryaMuller',
-                style: GoogleFonts.roboto(
+                style: GoogleFonts.poppins(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),
@@ -42,7 +42,7 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(height: 10),
               Text(
                 'arya@gmail.com',
-                style: GoogleFonts.roboto(
+                style: GoogleFonts.poppins(
                   fontSize: 17,
                   fontWeight: FontWeight.w400,
                 ),
