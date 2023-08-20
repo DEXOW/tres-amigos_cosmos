@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,8 +8,6 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => HomeScreenState();
 }
-
-String selectedPlanet = 'Earth';
 
 Widget buildAttractionsItem(IconData icon, String title) {
   return Container(
@@ -115,11 +112,30 @@ Widget buildchangePlanetButton(
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  final Random random = Random();
+  int currentPlanetIndex = 0;
+  final List<String> planets = [
+    'Earth',
+    'Jupiter',
+    'Mars',
+    'Mercury',
+    'Neptune',
+    'Saturn',
+    'Uranus',
+    'Venus',
+  ];
+
+  void changePlanet(bool goForward) {
+    setState(() {
+      if (goForward) {
+        currentPlanetIndex = (currentPlanetIndex + 1) % planets.length;
+      } else {
+        currentPlanetIndex = (currentPlanetIndex - 1) % planets.length;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -179,98 +195,27 @@ class HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
-                      LayoutBuilder(
-                        builder: (context, constraints) {
-                          if (selectedPlanet == 'Earth') {
-                            return buildPlanetDisplay(
-                                'Earth', 'assets/images/Earth.png');
-                          } else if (selectedPlanet == 'Jupiter') {
-                            return buildPlanetDisplay(
-                                'Jupiter', 'assets/images/Jupiter.png');
-                          } else if (selectedPlanet == 'Mars') {
-                            return buildPlanetDisplay(
-                                'Mars', 'assets/images/Mars.png');
-                          } else if (selectedPlanet == 'Mercury') {
-                            return buildPlanetDisplay(
-                                'Mercury', 'assets/images/Mercury.png');
-                          } else if (selectedPlanet == 'Neptune') {
-                            return buildPlanetDisplay(
-                                'Neptune', 'assets/images/Neptune.png');
-                          } else if (selectedPlanet == 'Saturn') {
-                            return buildPlanetDisplay(
-                                'Saturn', 'assets/images/Saturn.png');
-                          } else if (selectedPlanet == 'Uranus') {
-                            return buildPlanetDisplay(
-                                'Uranus', 'assets/images/Uranus.png');
-                          } else if (selectedPlanet == 'Venus') {
-                            return buildPlanetDisplay(
-                                'Venus', 'assets/images/Venus.png');
-                          }
-                          return Container();
-                        },
-                      ),
                       Positioned(
                         left: 5,
                         top: 45,
-                        child: buildchangePlanetButton(
-                          7.5,
-                          Icons.arrow_back_ios,
-                          () {
-                            setState(
-                              () {
-                                List<String> planets = [
-                                  'Earth',
-                                  'Venus',
-                                  'Mercury',
-                                  'Neptune',
-                                  'Uranus',
-                                  'Saturn',
-                                  'Jupiter',
-                                  'Mars'
-                                ];
-                                int currentIndex =
-                                    planets.indexOf(selectedPlanet);
-                                    // print(currentIndex);
-                                selectedPlanet = planets[
-                                    (currentIndex + 1) % planets.length];
-                              },
-                            );
-                          },
-                        ),
+                        child: buildchangePlanetButton(7.5,
+                            Icons.arrow_back_ios, () => changePlanet(false)),
                       ),
                       Positioned(
                         right: 5,
                         top: 45,
-                        child: buildchangePlanetButton(
-                          0,
-                          Icons.arrow_forward_ios,
-                          () {
-                            setState(
-                              () {
-                                List<String> planets = [
-                                  'Earth',
-                                  'Venus',
-                                  'Mercury',
-                                  'Neptune',
-                                  'Uranus',
-                                  'Saturn',
-                                  'Jupiter',
-                                  'Mars'
-                                ];
-                                int currentIndex =
-                                    planets.indexOf(selectedPlanet);
-                                    // print(currentIndex);
-                                selectedPlanet = planets[
-                                    (currentIndex - 1) % planets.length];
-                              },
-                            );
-                          },
-                        ),
+                        child: buildchangePlanetButton(0,
+                            Icons.arrow_forward_ios, () => changePlanet(true)),
+                      ),
+                      // AnimatedSwitcher with unique key
+                      buildPlanetDisplay(
+                        planets[currentPlanetIndex],
+                        'assets/images/${planets[currentPlanetIndex]}.png',
                       ),
                     ],
                   ),
                   Container(
-                    padding: EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
                     height: 240,
                     width: double.infinity,
                     margin: const EdgeInsets.only(top: 30, left: 30, right: 30),
@@ -281,14 +226,17 @@ class HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                print('Tapped');
+                              },
                               child: Container(
-                                padding: EdgeInsets.only(left: 10, right: 18),
+                                padding: const EdgeInsets.only(left: 10, right: 18),
                                 height: 40,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFF404C57),
+                                  color: const Color(0xFF404C57),
                                   borderRadius: BorderRadius.circular(16),
                                 ),
                                 child: Row(
@@ -298,7 +246,7 @@ class HomeScreenState extends State<HomeScreen> {
                                       color: Colors.white,
                                       size: 20,
                                     ),
-                                    SizedBox(width: 6),
+                                    const SizedBox(width: 6),
                                     Text(
                                       'Attractions',
                                       style: GoogleFonts.poppins(
@@ -313,44 +261,48 @@ class HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 12,
                             ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: Container(
-                                width: 72,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF404C57),
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                child: const Center(
-                                  child: Icon(
-                                    Icons.cloud_outlined,
-                                    color: Colors.white,
-                                    size: 20,
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {},
+                                child: Container(
+                                  // width: 70,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF404C57),
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: const Center(
+                                    child: Icon(
+                                      Icons.cloud_outlined,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 12,
                             ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: Container(
-                                width: 72,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF404C57),
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                child: const Center(
-                                  child: Icon(
-                                    Icons.people_alt_outlined,
-                                    color: Colors.white,
-                                    size: 20,
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {},
+                                child: Container(
+                                  // width: 70,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF404C57),
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: const Center(
+                                    child: Icon(
+                                      Icons.people_alt_outlined,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -384,50 +336,46 @@ class HomeScreenState extends State<HomeScreen> {
             width: double.infinity,
             height: 60,
             decoration: BoxDecoration(
-              color: Color(0x25FFFFFF),
+              color: const Color(0x25FFFFFF),
               borderRadius: BorderRadius.circular(15),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  icon: CircleAvatar(
-                    radius: 20,
-                    backgroundColor: Colors.white,
-                    child: SvgPicture.asset(
-                      "assets/icons/home.svg",
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                Widget buildIcon(String iconPathSVG) {
+                  return IconButton(
+                    icon: SvgPicture.asset(
+                      iconPathSVG,
                       colorFilter:
-                          const ColorFilter.mode(Colors.black, BlendMode.srcIn),
+                          const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                     ),
-                  ),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: SvgPicture.asset(
-                    "assets/icons/seach.svg",
-                    colorFilter:
-                        const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-                  ),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: SvgPicture.asset(
-                    "assets/icons/booking.svg",
-                    colorFilter:
-                        const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-                  ),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: SvgPicture.asset(
-                    "assets/icons/profile.svg",
-                    colorFilter:
-                        const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-                  ),
-                  onPressed: () {},
-                ),
-              ],
+                    onPressed: () {},
+                  );
+                }
+                Widget buildSelectedIcon(String iconPathSVG) {
+                  return IconButton(
+                    padding: EdgeInsets.zero,
+                    icon: CircleAvatar(
+                      radius: 20,
+                      backgroundColor: Colors.white,
+                      child: SvgPicture.asset(
+                        iconPathSVG,
+                        colorFilter: const ColorFilter.mode(
+                            Colors.black, BlendMode.srcIn),
+                      ),
+                    ),
+                    onPressed: () {},
+                  );
+                }
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    buildSelectedIcon("assets/icons/home.svg"),
+                    buildIcon("assets/icons/seach.svg"),
+                    buildIcon("assets/icons/booking.svg"),
+                    buildIcon("assets/icons/profile.svg"),
+                  ],
+                );
+              },
             ),
           ),
         ),
