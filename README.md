@@ -1,16 +1,31 @@
-# cosmos
+## Cosmos
 
-A new Flutter project.
+Cosmos is a travel app that allows users to explore different destinations and plan their trips. This app is built using Flutter and is compatible with both Android and iOS devices.
 
-## Getting Started
+Getting Started
+To run this app on your local machine, follow these steps:
 
-This project is a starting point for a Flutter application.
+1. Clone the repository to your local machine:
 
-A few resources to get you started if this is your first Flutter project:
+git clone [https://github.com/DEXOW/tres-amigos_cosmos.git](https://github.com/DEXOW/tres-amigos_cosmos.git)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. Open the project in Visual Studio Code.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. Run the following command to install the required dependencies:
+
+`flutter pub get`
+
+4. Connect your Android or iOS device to your computer.
+
+5. Run the app using the following command:
+
+`flutter run`
+
+## Configuration
+
+To configure the app, you can modify the following files:
+
+- `lib/constants.dart`: This file contains the app's constants, such as colors and fonts.
+- `lib/screens/travel_screen.dart`: This file contains the main screen of the app.
+
+
