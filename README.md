@@ -1,4 +1,4 @@
-Cosmos
+## Cosmos
 
 Cosmos is a travel app that allows users to explore different destinations and plan their trips. This app is built using Flutter and is compatible with both Android and iOS devices.
 
